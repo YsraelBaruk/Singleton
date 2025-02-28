@@ -2,10 +2,26 @@ import model.Singleton;
 
 public class Main {
     public static void main(String[] args) {
-        Singleton singletonCar = Singleton.getInstance("this is a car!");    
-        Singleton singletonMotor = Singleton.getInstance("this is a motorcycle!");
         
-        System.out.println(singletonCar.value);
-        System.out.println(singletonMotor.value);
+        Thread threadCar = new Thread(new ThreadCar());
+        Thread threadMotor = new Thread(new ThreadMotor());
+        threadCar.start();
+        threadMotor.start();
+    }
+
+    static class ThreadCar implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Car");
+            System.out.println(singleton.value);
+        }
+    }
+
+    static class ThreadMotor implements Runnable {
+        @Override
+        public void run() {
+            Singleton singleton = Singleton.getInstance("Motorcycle");
+            System.out.println(singleton.value);
+        }
     }
 }

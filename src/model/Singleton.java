@@ -1,24 +1,23 @@
 package model;
 
 public final class Singleton {
-    private static volatile Singleton instance;
-
+    
+    private static Singleton instance;
     public String value;
 
     private Singleton(String value) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.value = value;
     }
 
     public static Singleton getInstance(String value) {
-        Singleton result = instance;
-        if (result != null) {
-            return result;
+        if (instance == null) {
+            instance = new Singleton(value);
         }
-        synchronized(Singleton.class) {
-            if (instance == null) {
-                instance = new Singleton(value);
-            }
-            return instance;
-        }
+        return instance;
     }
 }

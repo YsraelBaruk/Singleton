@@ -2,10 +2,10 @@ import model.Singleton;
 
 public class Main {
     public static void main(String[] args) {
-        Singleton singleton = Singleton.getInstance("Hello, Singleton!");    
-        Singleton otherSingleton = Singleton.getInstance("Other Singleton, Hi!");
+        Singleton singletonCar = Singleton.getInstance("this is a car!");    
+        Singleton singletonMotor = Singleton.getInstance("this is a motorcycle!");
         
-        System.out.println(singleton.value);
-        System.out.println(otherSingleton.value);
+        System.out.println(singletonCar.value);
+        System.out.println(singletonMotor.value);
     }
 }
